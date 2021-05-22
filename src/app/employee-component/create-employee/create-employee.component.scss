@@ -1,0 +1,105 @@
+.outerContainer {
+    background: #F7F7F7 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    height: 88px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.logo {
+    margin-left: 6%;
+}
+
+.employee {
+    color: #82A70C;
+    font-size:  22px;
+    margin-left: 10%;
+    font: normal normal bold 22px/25px Montserrat;
+    letter-spacing: 0px;
+    text-transform: capitalize;
+    opacity: 1;
+}
+
+.payroll {
+    color: #42515F;
+    font-size:  22px;
+    margin-left: 10%;
+    font: normal normal bold 22px/25px Montserrat;
+    letter-spacing: 0px;
+    text-transform: capitalize;
+    opacity: 1;
+}
+
+.card {
+    width: 685px;
+}
+
+.header {
+    text-align: left;
+    width: -webkit-fill-available;
+    padding-bottom: 1%;
+    font: normal normal bold 28px/37px Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    text-transform: capitalize;
+    opacity: 1;
+}
+
+.field {
+    font-size: 18px;
+    font: normal normal normal 18px/24px Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    opacity: 1;
+}
+
+.genderRadio {
+    font: normal normal normal 15px/24px Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    opacity: 1;
+}
+
+.deptCheckbox {
+    font: normal normal normal 15px/24px Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    opacity: 1;
+}
+
+.submit, .update {
+    background: #E2E2E2 0% 0% no-repeat padding-box;
+    border: 1px solid #969696;
+    border-radius: 5px;
+    opacity: 1;
+    width: 7em;
+    height: 3em;
+    font: normal normal normal 13px/26px Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    opacity: 1;
+}
+
+.reset {
+    background: #E2E2E2 0% 0% no-repeat padding-box;
+    border: 1px solid #969696;
+    border-radius: 5px;
+    opacity: 1;
+    width: 7em;
+    height: 3em;
+    font: normal normal normal 13px/26px Roboto;
+    letter-spacing: 0px;
+    color: #42515F;
+    opacity: 1;
+}
+
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    margin-bottom: -28px;
+    margin-top: -24px;
+}

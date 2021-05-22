@@ -1,0 +1,149 @@
+<div class="outerContainer" fxLayout="column" fxLayoutAlign="center center">
+    <mat-toolbar>
+      <img class="logo" src="../../../assets/images/logo.png" alt="Logo" routerLink=''>
+      <div>
+          <div class="employee" routerLink=''>EMPLOYEE</div>
+          <div class="payroll" routerLink=''>PAYROLL</div>
+      </div>
+    </mat-toolbar>
+    <div   fxLayout="row" fxFlex="50" flex-wrap wrap fxFlex.xs="100" [formGroup]="userDetail">
+      <mat-card class="card">
+  
+        <div fxLayout="column" fxLayoutAlign="space-evenly stretch" dir="ltr" fxLayoutGap="3%">
+          <div class="header">Employee Payroll Form</div>
+  
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="field">Name</div>
+            <div fxFlex="75">
+              <mat-form-field fxFlex="100" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput class="matInput" autocomplete="off" placeholder="Name" formControlName="name">
+                <mat-error fxFlex
+                  *ngIf="!userDetail.controls['name'].valid && userDetail.controls['name'].touched">
+                  Invalid Name! 
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="field">Profile Image</div>
+            <div fxFlex="75" fxLayout="column">
+              <mat-radio-group class="profileRadio" aria-label="Profile" dir="ltr" fxLayoutGap="5%" formControlName="profile" (change)="validatePrevious(1)">
+                <mat-radio-button value="../../../assets/profile-images/Ellipse -1.png"><img class="profile" src="../../../assets/profile-images/Ellipse -1.png" alt="Pic1"></mat-radio-button>
+                <mat-radio-button value="../../../assets/profile-images/Ellipse -2.png"><img class="profile" src="../../../assets/profile-images/Ellipse -2.png" alt="Pic2"></mat-radio-button>
+                <mat-radio-button value="../../../assets/profile-images/Ellipse -3.png"><img class="profile" src="../../../assets/profile-images/Ellipse -3.png" alt="Pic3"></mat-radio-button>
+                <mat-radio-button value="../../../assets/profile-images/Ellipse -4.png"><img class="profile" src="../../../assets/profile-images/Ellipse -4.png" alt="Pic4"></mat-radio-button>
+                <mat-radio-button value="../../../assets/profile-images/Ellipse -5.png"><img class="profile" src="../../../assets/profile-images/Ellipse -5.png" alt="Pic5"></mat-radio-button>
+              </mat-radio-group>
+              <mat-error fxFlex style ="font-size: 80%; margin-left: 2%;"
+                *ngIf="!userDetail.controls['profile'].valid && userDetail.controls['profile'].touched">
+                Select One! 
+              </mat-error>
+            </div>
+          </div>
+  
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="field">Gender</div>
+            <div fxFlex="75" fxLayout="column">
+              <mat-radio-group class="genderRadio" aria-label="Gender" dir="ltr" fxLayoutGap="5%" formControlName="gender" (change)="validatePrevious(2)">
+                <mat-radio-button value="Male">Male</mat-radio-button>
+                <mat-radio-button value="Female">Female</mat-radio-button>
+                <mat-radio-button value="Other">Other</mat-radio-button>
+              </mat-radio-group>  
+              <mat-error fxFlex style ="font-size: 80%; margin-left: 2%;"
+                *ngIf="!userDetail.controls['gender'].valid && userDetail.controls['gender'].touched">
+                Select One! 
+              </mat-error>          
+            </div>
+          </div>
+          
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="field">Department</div>
+            <div fxLayout="column" fxFlex="75">
+              <div fxFlex="100" style="padding-bottom: 1em;">
+                <div *ngFor = "let department of departments" fxLayout="row" fxLayoutAlign="space-between center" style="width: 140px;padding-top: 2%;" fxFlex='98'>
+                  <mat-checkbox class="deptCheckbox" #checkBox [value]= "department" [checked] = "toggleCheckBox(department)" (change)="getCheckbox(checkBox);validatePrevious(3);" >{{department}}</mat-checkbox>
+                </div>
+              </div>
+              <mat-error fxFlex style ="font-size: 80%; margin-left: 2%;"
+                *ngIf="checked.length==0 && userDetail.controls['departments'].touched">
+                Select One! 
+              </mat-error>
+            </div>
+          </div>
+  
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="field" style="padding-bottom: 1em;">Salary</div>
+            <div fxFlex="75" style="padding-bottom: 1em;" fxLayoutAlign="stretch center">
+              <div fxFlex>
+                <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" min="0" max="100000" formControlName="salary" style="width: 90%;" (change)="validatePrevious(4)">
+                </mat-slider>
+                <mat-error style ="font-size: 80%; margin-left: 2%;"
+                *ngIf="!userDetail.controls['salary'].valid && userDetail.controls['salary'].touched">
+                Salary is Required! </mat-error>
+              </div>
+              <div style="font: normal normal normal 15px/26px Roboto;
+                          letter-spacing: 0px;
+                          color: #42515F;
+                          opacity: 1;">100k</div>
+            </div>  
+          </div>
+  
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="field" style="padding-bottom: 1em;">Start Date</div>
+            <div fxFlex="75" dir="ltr" fxLayoutGap="3%">
+              
+              <mat-form-field appearance="outline" style="width: 100px;">
+                <mat-label>Day</mat-label>
+                <mat-select formControlName="day" (selectionChange)="validatePrevious(5)">
+                  <mat-option *ngFor="let day of days" [value]="day">{{day}}</mat-option>
+                </mat-select>
+                <mat-error fxFlex
+                *ngIf="!userDetail.controls['day'].valid && userDetail.controls['day'].touched">
+                Day is Required! </mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" style="width: 100px;">
+                <mat-label>Month</mat-label>
+                <mat-select formControlName="month" (selectionChange)="validatePrevious(6)">
+                  <mat-option *ngFor="let month of months" [value]="month">{{month}}</mat-option>
+                </mat-select>
+                <mat-error fxFlex
+                  *ngIf="!userDetail.controls['month'].valid && userDetail.controls['month'].touched">
+                  Month is Required! 
+                </mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" style="width: 100px;">
+                <mat-label>Year</mat-label>
+                <mat-select formControlName="year" (selectionChange)="validatePrevious(7)">
+                  <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+                </mat-select>
+                <mat-error fxFlex
+                  *ngIf="!userDetail.controls['year'].valid && userDetail.controls['year'].touched">
+                  Year is Required! 
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="field">Notes</div>
+            <div fxFlex="75">
+              <mat-form-field fxFlex="100" appearance="outline" style="height: 10%;">
+                <mat-label>Notes</mat-label>
+                <input matInput class="matInput" autocomplete="off" placeholder="Notes" formControlName="notes" (change)="validatePrevious(8)">
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="button" fxLayout='row' fxLayoutAlign='end space-between' dir="ltr" fxLayoutGap="5%">
+            <button class = "reset" mat-raised-button color="primary" (click)="reset()">Reset</button>
+            <button class = "submit" mat-raised-button color="primary" (click)="register()">Submit</button>
+          </div>
+        </div>
+      </mat-card>
+  
+    </div>
+  </div>
